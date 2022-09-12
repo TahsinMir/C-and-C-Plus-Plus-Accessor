@@ -12,6 +12,7 @@ public:
 	SampleCpp();
 	~SampleCpp();
 	int IntegerManipulation(int x, int y);
-	BSTR ReturnAString();
+	float FloatManipulation(float x, float y);
+	BSTR StringManipulation(BSTR x, BSTR y);
 };
 

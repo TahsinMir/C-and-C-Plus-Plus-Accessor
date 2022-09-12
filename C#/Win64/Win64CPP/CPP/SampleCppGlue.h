@@ -10,8 +10,8 @@ extern "C" {
 	extern __declspec(dllexport) SampleCpp* CreateInstaceWin64();
 
 	extern __declspec(dllexport) int IntegerManipulation(SampleCpp* instance, int x, int y);
-
-	extern __declspec(dllexport) BSTR ReturnAString(SampleCpp* instance);
+	extern __declspec(dllexport) float FloatManipulation(SampleCpp* instance, float x, float y);
+	extern __declspec(dllexport) BSTR StringManipulation(SampleCpp* instance, BSTR x, BSTR y);
 
 #ifdef __cplusplus
 }

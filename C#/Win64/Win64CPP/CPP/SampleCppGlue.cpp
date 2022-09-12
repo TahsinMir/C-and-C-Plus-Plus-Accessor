@@ -16,12 +16,21 @@ int IntegerManipulation(SampleCpp* instance, int x, int y)
     return -1;
 }
 
-
-BSTR ReturnAString(SampleCpp* instance)
+float FloatManipulation (SampleCpp* instance, float x, float y)
 {
     if (instance != NULL)
     {
-        return SysAllocString(instance->ReturnAString());
+        return instance->FloatManipulation(x, y);
     }
-    return NULL;
+    return -0.1;
+}
+
+
+BSTR StringManipulation(SampleCpp* instance, BSTR x, BSTR y)
+{
+    if (instance != NULL)
+    {
+        return SysAllocString(instance->StringManipulation(x, y));
+    }
+    return SysAllocString(L"FAIL");
 }

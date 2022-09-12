@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -7,8 +8,7 @@ namespace Win64CPP
 {
     public class CppConnector
     {
-        private const string Path64 = "D:\\codeRepos\\CCPLUSPLUSACCESSOR\\C-and-C-Plus-Plus-Accessor\\C#\\Win64\\Win64CPP\\Debug\\CPP.dll";
-
+        private const string Path64 = "D:\\codeRepos\\CCPLUSPLUSACCESSOR\\C-and-C-Plus-Plus-Accessor\\C#\\Win64\\Win64CPP\\x64\\Debug\\CPP.dll"; // the directory where the dll file is generated
 
         // x64
         [DllImport(Path64, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
@@ -17,10 +17,13 @@ namespace Win64CPP
         [DllImport(Path64, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         private static extern int IntegerManipulation(IntPtr instance, int x, int y);
 
+        [DllImport(Path64, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
+        private static extern float FloatManipulation(IntPtr instance, float x, float y);
+
 
         [DllImport(Path64, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.BStr)]
-        private static extern string ReturnAString(IntPtr instance);
+        private static extern string StringManipulation(IntPtr instance, string x, string y);
 
         private IntPtr instance;
 
@@ -28,6 +31,8 @@ namespace Win64CPP
         public CppConnector()
         {
             this.instance = IntPtr.Zero;
+            string dir = Directory.GetCurrentDirectory();
+            Console.WriteLine(dir);
         }
 
         public bool InitializeCppInstance()
@@ -50,9 +55,14 @@ namespace Win64CPP
             return IntegerManipulation(this.instance, x, y);
         }
 
-        public string ReturnAStringFromCpp()
+        public float FloatManipulationFromCpp(float x, float y)
         {
-            return ReturnAString(this.instance);
+            return FloatManipulation(this.instance, x, y);
+        }
+
+        public string StringManipulationFromCpp(string x, string y)
+        {
+            return StringManipulation(this.instance, x, y);
         }
     }
 }
