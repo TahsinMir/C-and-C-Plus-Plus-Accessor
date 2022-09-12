@@ -1,0 +1,2 @@
+g++ -c -fPIC SampleCpp.cpp SampleCppGlue.cpp
+g++ -fPIC SampleCpp.cpp SampleCppGlue.cpp -shared -o libProject.so
